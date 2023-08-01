@@ -8,20 +8,25 @@ const userSchema = new Schema(
     nome: {
       required: true,
       type: String,
+      trim: true,
     },
     username: {
       required: true,
       type: String,
       unique: true,
+      trim: true,
     },
     email: {
       required: true,
       type: String,
       unique: true,
+      lowercase: true,
+      trim: true,
     },
     password: {
       required: true,
       type: String,
+      select: false,
     },
     cpf: {
       required: true,
@@ -41,8 +46,23 @@ const userSchema = new Schema(
       enum: userRoles,
       default: "patient",
     },
+    passwordResetToken: {
+      type: String,
+      select: false,
+    },
+    passwordResetExpires: {
+      type: Date,
+      select: false,
+    },
   },
   { timestamps: true, collection: "users" }
 );
+
+// Hash the password before saving it to the database
+userSchema.pre("save", async function (next) {
+  const hash = await bcrypt.hash(this.password, 10);
+  this.password = hash;
+  next();
+});
 
 module.exports = mongoose.model("User", userSchema);
