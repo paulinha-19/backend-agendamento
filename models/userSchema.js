@@ -41,6 +41,13 @@ const userSchema = new Schema(
       enum: userRoles,
       default: "patient",
     },
+    otp: {
+      type: String,
+    },
+    emailVerified: {
+      type: Boolean,
+      default: false,
+    },
   },
   { timestamps: true, collection: "users" }
 );

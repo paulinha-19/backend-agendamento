@@ -20,6 +20,9 @@ router.post(
   "/login",
   authController.loginUser
 );
+router.post(
+  "/confirm-email", 
+  userController.confirmEmail);
 // router.delete("/user/:id", userController.deleteUser);
 // router.patch(
 //   "/user/:id",
