@@ -23,6 +23,7 @@ router.post(
 router.post(
   "/confirm-email", 
   userController.confirmEmail);
+router.post("/forgot-password", userController.forgotPassword)  
 // router.delete("/user/:id", userController.deleteUser);
 // router.patch(
 //   "/user/:id",

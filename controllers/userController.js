@@ -135,7 +135,7 @@ const userController = {
       return res.status(500).json({ success: false, message: error.message });
     }
   },
-  forgotUser: async (req, res) =>{
+  forgotPassword: async (req, res) =>{
     const { email } = req.body;
 
     try {
