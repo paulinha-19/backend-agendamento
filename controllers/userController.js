@@ -54,7 +54,7 @@ const userController = {
     }
   },
   createUser: async (req, res) => {
-    const { nome, username, email, password, cpf, sexo, birth } = req.body;
+    const { name, username, email, password, cpf, sex, birth } = req.body;
     try {
       const cpfExists = await userModel.findOne({ cpf });
       const emailExists = await userModel.findOne({ email });
@@ -67,12 +67,12 @@ const userController = {
       }
       const hashedPassword = await bcrypt.hash(password, 10);
       await userModel.create({
-        nome,
+        name,
         username,
         email,
         password: hashedPassword,
         cpf,
-        sexo,
+        sex,
         birth,
       });
 
